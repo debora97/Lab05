@@ -1,9 +1,11 @@
 package it.polito.tdp.anagrammi.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.lab05.model.Model;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,6 +35,18 @@ public class AnagrammiController {
 
     @FXML
     void doCalcolaAnagrammi(ActionEvent event) {
+    	String parola;
+    	
+    	try {
+			parola = txtInserisci.getText();
+		} catch (NumberFormatException e) {
+			txtInserisci.clear();
+			txtInserisci.appendText("Parola inserita nel modo errato");
+			return;
+
+		}
+    	// metodo per prendere la lista di anagrammi giusti e sbagliati 
+    	// append text nelle textArea
 
     }
 
