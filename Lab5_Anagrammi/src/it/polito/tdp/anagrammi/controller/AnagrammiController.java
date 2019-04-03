@@ -1,6 +1,7 @@
 package it.polito.tdp.anagrammi.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,13 +46,17 @@ public class AnagrammiController {
 			return;
 
 		}
-    	// metodo per prendere la lista di anagrammi giusti e sbagliati 
-    	// append text nelle textArea
+    	
+    	List<String> anagrammiCorretti= new ArrayList<String>(model.restAnagrammiCorretti());
+    	List<String> anagrammiErrati= new ArrayList<String>(model.restAnagrammiErrati());
 
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	txtInserisci.clear();
+    	txtAnagrammiCorretti.clear();
+    	txtAnagrammiErrati.clear();
 
     }
 

@@ -7,8 +7,10 @@ import it.polito.tdp.lab05.DAO.ParolaDAO;
 
 
 public class Model {
+	ParolaDAO dao= new ParolaDAO();
 List<String> soluzioni;
-	
+List<String> anagrammiCorretti;
+List<String> anagrammiSbagliati;
 	public void genera(String iniziale) {
 		String parziale="" ;
 		this.soluzioni= new ArrayList<String>() ;
@@ -50,6 +52,29 @@ List<String> soluzioni;
 			}
 		}
 		return contatore;
+	}
+	
+	public List<String> restAnagrammiCorretti(){
+		for(String s: this.soluzioni) {
+			if(dao.isCorrect(s)== true) {
+				this.anagrammiCorretti.add(s);
+			}
+			
+			
+		}
+		return anagrammiCorretti;
+		
+	}
+
+	public List<String> restAnagrammiErrati(){
+		for(String s: this.soluzioni) {
+			
+			if(dao.isCorrect(s)== true) {
+				this.anagrammiSbagliati.add(s);
+			}
+			
+		}
+		return anagrammiSbagliati;
 	}
 	
 	
