@@ -14,31 +14,31 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AnagrammiController {
-	Model model= new Model();
+	Model model = new Model();
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private TextField txtInserisci;
+	@FXML
+	private TextField txtInserisci;
 
-    @FXML
-    private Button btnCalcoloAnagrammi;
+	@FXML
+	private Button btnCalcoloAnagrammi;
 
-    @FXML
-    private TextArea txtAnagrammiCorretti;
+	@FXML
+	private TextArea txtAnagrammiCorretti;
 
-    @FXML
-    private TextArea txtAnagrammiErrati;
+	@FXML
+	private TextArea txtAnagrammiErrati;
 
-    @FXML
-    void doCalcolaAnagrammi(ActionEvent event) {
-    	String parola;
-    	
-    	try {
+	@FXML
+	void doCalcolaAnagrammi(ActionEvent event) {
+		String parola;
+
+		try {
 			parola = txtInserisci.getText();
 		} catch (NumberFormatException e) {
 			txtInserisci.clear();
@@ -46,31 +46,38 @@ public class AnagrammiController {
 			return;
 
 		}
-    	
-    	List<String> anagrammiCorretti= new ArrayList<String>(model.restAnagrammiCorretti());
-    	List<String> anagrammiErrati= new ArrayList<String>(model.restAnagrammiErrati());
+		this.model.genera(parola);
+		txtAnagrammiCorretti.clear();
+		txtAnagrammiErrati.clear();
+		for (String s : model.soluzioni) {
 
-    }
+			if (model.isCorrect(s) == true) {
+				txtAnagrammiCorretti.appendText(s + "\n");
+			} else
+				txtAnagrammiErrati.appendText(s + "\n");
+		}
 
-    @FXML
-    void doReset(ActionEvent event) {
-    	txtInserisci.clear();
-    	txtAnagrammiCorretti.clear();
-    	txtAnagrammiErrati.clear();
+	}
 
-    }
+	@FXML
+	void doReset(ActionEvent event) {
+		txtInserisci.clear();
+		txtAnagrammiCorretti.clear();
+		txtAnagrammiErrati.clear();
 
-    @FXML
-    void initialize() {
-        assert txtInserisci != null : "fx:id=\"txtInserisci\" was not injected: check your FXML file 'Anagrammi.fxml'.";
-        assert btnCalcoloAnagrammi != null : "fx:id=\"btnCalcoloAnagrammi\" was not injected: check your FXML file 'Anagrammi.fxml'.";
-        assert txtAnagrammiCorretti != null : "fx:id=\"txtAnagrammiCorretti\" was not injected: check your FXML file 'Anagrammi.fxml'.";
-        assert txtAnagrammiErrati != null : "fx:id=\"txtAnagrammiErrati\" was not injected: check your FXML file 'Anagrammi.fxml'.";
+	}
 
-    }
-    public void setModel(Model model) {
+	@FXML
+	void initialize() {
+		assert txtInserisci != null : "fx:id=\"txtInserisci\" was not injected: check your FXML file 'Anagrammi.fxml'.";
+		assert btnCalcoloAnagrammi != null : "fx:id=\"btnCalcoloAnagrammi\" was not injected: check your FXML file 'Anagrammi.fxml'.";
+		assert txtAnagrammiCorretti != null : "fx:id=\"txtAnagrammiCorretti\" was not injected: check your FXML file 'Anagrammi.fxml'.";
+		assert txtAnagrammiErrati != null : "fx:id=\"txtAnagrammiErrati\" was not injected: check your FXML file 'Anagrammi.fxml'.";
+
+	}
+
+	public void setModel(Model model) {
 		this.model = model;
-		
+
 	}
 }
-

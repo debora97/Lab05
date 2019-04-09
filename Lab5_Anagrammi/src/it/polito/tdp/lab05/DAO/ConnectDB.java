@@ -3,23 +3,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 public class ConnectDB {
-	static private final String jdbcUrl = "jdbc:mysql://localhost/iscritticorsi?user=root&password=237068&serverTimezone=Europe/Rome";
-	static private Connection connection = null;
+	
+       private static final String jdbcURL = "jdbc:mysql://localhost/dizionario?user=root&password=237068&serverTimezone=Europe/Rome";
 
 	public static Connection getConnection() {
-
+		Connection conn;
 		try {
-			if (connection == null || connection.isClosed()) {
-				connection = DriverManager.getConnection(jdbcUrl);
-			}
-			return connection;
-
+			conn = DriverManager.getConnection(jdbcURL);
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-			throw new RuntimeException("Cannot get a connection " + jdbcUrl, e);
+			System.err.println("Errore connessione al DB");
+			throw new RuntimeException(e);
 		}
+		return conn;
+		
 	}
-
 
 }

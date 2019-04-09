@@ -9,7 +9,13 @@ public class TestAnagrammi {
 		Model parola = new Model() ;
 		
 		parola.genera("tutto");
-		System.out.println(parola.soluzioni.toString());
+    for (String s: parola.soluzioni) {
+    		
+        	if(parola.isCorrect(s)==true) {
+        		System.out.println("corretta:"+s);
+        	}else System.out.println("errata:"+s);
+    	}
 	}
+	
 
 }
